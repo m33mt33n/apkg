@@ -1,0 +1,8 @@
+manifest.go:
+  project: https://github.com/h0x0er/andromanifest
+  version: 0.0.0-20210911152923
+  licence: GNU General Public License Version 2
+
+axml2xml.go:
+  project: https://github.com/tomowang/axml2xml
+  licence: MIT
