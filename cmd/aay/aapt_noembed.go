@@ -2,6 +2,6 @@
 
 package main
 
-func embeded_aapt() (string, uint8) {
-	return "", 64
+func embedded_aapt() (string, uint8) {
+	return "", 90
 }

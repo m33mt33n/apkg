@@ -31,12 +31,11 @@ var Error_msgs = map[int]string{
 	49:  "%s: unable to open database file!",
 	50:  "%s: unable to get data from database!",
 	51:  "%s: sqlite error #51!",
-
 	60:  "%s: argument parser error! (unused)",
 	61:  "%s: found mutually exclusive options! (unused)",
 	62:  "%s: missing required argument! (unused)",
 	63:  "%s: invalid regular expression! (unused)",
-	64:  "%s: aapt command not found!",
+	64:  "unused",
 	65:  "%s: error occurred while marshalling apkinfo! (unused)",
 	66:  "%s: operation completed with errors!",
 	67:  "%s: no match found in database!",
@@ -47,8 +46,11 @@ var Error_msgs = map[int]string{
 	72:  "%s: error occurred while opening appdata directory via CLI program! (unused)",
 	73:  "%s: error occurred while marshalling appinfo! (unused)",
 	74:  "%s: no apk file specified!",
-
 	80:  "%s: error occurred during app selection!",
+	90:  "%s: aapt command not found!",
+	91:  "%s: unable to create gzip data reader for embedded aapt binary!",
+	92:  "%s: unable to create file for writing embedded aapt binary to disk!",
+	93:  "%s: unable to write embedded aapt binary to disk!",
 	129: "%s: error occurred while executing external command!",
 	130: "%s: cancelled by user!",
 }

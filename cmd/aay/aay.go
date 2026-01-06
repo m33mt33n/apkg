@@ -1,13 +1,15 @@
-//┌───────────────────────────────────────────────────────────────────────────┐
-//  File           aay.go
-//  Description    An info viewer and launcher for installed android packages
-//  Version        0.1.0 alpha
-//  Author         Moin Khan <m33mt33n>
-//  License        GNU General Public License v3.0 or later (see LICENSE)
-//  Created        June 22, 2020, 02:27
-//  Re-Written     November 25, 2025 00:44 (translated from python with updates)
-//  Last Updated   January 06, 2026 01:14
-//└───────────────────────────────────────────────────────────────────────────┘
+/*
+┌───────────────────────────────────────────────────────────────────────────┐
+  File           aay.go
+  Description    An info viewer and launcher for installed android packages
+  Version        0.1.0 alpha
+  Author         Moin Khan <m33mt33n>
+  License        GNU General Public License v3.0 or later (see LICENSE)
+  Created        June 22, 2020, 02:27
+  Re-Written     November 25, 2025 00:44 (translated from python with updates)
+  Last Updated   January 06, 2026 21:10
+└───────────────────────────────────────────────────────────────────────────┘
+*/
 
 package main
 
@@ -242,7 +244,7 @@ func init() {
 	var made_a_new_db bool
 	var rcode uint8
 	if _, err := exec.LookPath("aapt"); err != nil {
-		apkg.Aapt_path, rcode = embeded_aapt()
+		apkg.Aapt_path, rcode = embedded_aapt()
 		exit_on_error1(rcode)
 	}
 	size, _ := apkg.File_size(apkg.DB_path)
