@@ -2,12 +2,12 @@
 ┌───────────────────────────────────────────────────────────────────────────┐
   File           aay.go
   Description    An info viewer and launcher for installed android packages
-  Version        0.1.0 alpha
+  Version        0.1.1 alpha
   Author         Moin Khan <m33mt33n>
   License        GNU General Public License v3.0 or later (see LICENSE)
   Created        June 22, 2020, 02:27
   Re-Written     November 25, 2025 00:44 (translated from python with updates)
-  Last Updated   January 06, 2026 21:10
+  Last Updated   March 28, 2026 21:58
 └───────────────────────────────────────────────────────────────────────────┘
 */
 
@@ -33,7 +33,7 @@ import (
 
 var (
 	prog       string = "aay"
-	version    string = "0.1.0 alpha [06.01.2026]"
+	version    string = "0.1.1 alpha [28.03.2026]"
 	debug_mode bool   = false
 )
 
