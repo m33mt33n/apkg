@@ -58,13 +58,13 @@ var (
 		regexp.MustCompile("lastUpdateTime=(.+)"),
 	}
 	RE_Appinfo = [7]*regexp.Regexp{
-		regexp.MustCompile("package: name='(.+?)'"),
-		regexp.MustCompile("application-label:'(.+?)'"),
-		regexp.MustCompile("versionName='(.+?)'"),
-		regexp.MustCompile("versionCode='(.+?)'"),
-		regexp.MustCompile("launchable-activity: name='(.+?)'"),
-		regexp.MustCompile("sdkVersion:'(\\d+)'"),
-		regexp.MustCompile("targetSdkVersion:'(\\d+)'"),
+		regexp.MustCompile("package: name='(.*?)'"),
+		regexp.MustCompile("application-label:'(.*?)'"),
+		regexp.MustCompile("versionName='(.*?)'"),
+		regexp.MustCompile("versionCode='(.*?)'"),
+		regexp.MustCompile("launchable-activity: name='(.*?)'"),
+		regexp.MustCompile("sdkVersion:'(\\d*?)'"),
+		regexp.MustCompile("targetSdkVersion:'(\\d*?)'"),
 	}
 	Aapt_path = "aapt"
 )
@@ -259,7 +259,7 @@ func get_info(apk string) (ApkInfo, uint8) {
 	var sink [7]any
 	for idx, pattern := range RE_Appinfo {
 		result := pattern.FindStringSubmatch(string(output))
-		if len(result) != 2 {
+		if len(result) != 2 || (len(result) == 2 && len(result[1]) == 0) {
 			if idx == 5 || idx == 6 {
 				sink[idx] = uint8(0)
 			} else {
