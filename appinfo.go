@@ -1,8 +1,11 @@
 package apkg
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
@@ -79,6 +82,43 @@ Minimum SDK      %s
 Target SDK       %s
 `
 
+func get_mactivity_override(app App, debug bool) App {
+	// get overrided main activities
+	os.MkdirAll(Data_dir, 0750)
+	overrides_file := filepath.Join(Data_dir, "mactivity_override.json")
+	var (
+		data_bytes []byte
+		overrides  map[string]string
+		err        error
+	)
+	if File_exists(overrides_file) {
+		if data_bytes, err = os.ReadFile(overrides_file); err == nil {
+			err = json.Unmarshal(data_bytes, &overrides)
+		}
+	} else {
+		var file *os.File
+		overrides = map[string]string{
+			"com.dummy.package":  "dummy.main.activity",
+		}
+		if file, err = os.Create(overrides_file); err == nil {
+			defer file.Close()
+			encoder := json.NewEncoder(file)
+			encoder.SetIndent("", "  ")
+			err = encoder.Encode(overrides)
+		}
+	}
+	if debug && err != nil {
+		fmt.Println(err)
+	} else {
+		for pkg, act := range overrides {
+			if Package(pkg) == app.Package {
+				app.Main_activity = act
+			}
+		}
+	}
+	return app
+}
+
 func (pkg Package) Kill(safe_kill bool, debug bool) uint8 {
 	var cmd string
 	if safe_kill {
@@ -139,6 +179,7 @@ func (app App) String() string {
 	if Target_SDK == "0" {
 		Target_SDK = "NA"
 	}
+	app = get_mactivity_override(app, false)
 	result := strings.Trim(
 		fmt.Sprintf(
 			appinfo,
@@ -187,6 +228,7 @@ func (apkinfo ApkInfo) String() string {
 }
 
 func (app App) Start(debug bool) uint8 {
+	app = get_mactivity_override(app, debug)
 	output, err := exec.Command(
 		"sh", "-c", fmt.Sprintf("am start '%s/%s'", string(app.Package), app.Main_activity),
 	).CombinedOutput()
