@@ -107,14 +107,14 @@ func get_mactivity_override(app App, debug bool) App {
 			err = encoder.Encode(overrides)
 		}
 	}
-	if debug && err != nil {
-		fmt.Println(err)
-	} else {
+	if err == nil {
 		for pkg, act := range overrides {
 			if Package(pkg) == app.Package {
 				app.Main_activity = act
 			}
 		}
+	} else if debug {
+		fmt.Println(err)
 	}
 	return app
 }
@@ -376,6 +376,7 @@ func Get_info_from_apk(apk string) (ApkInfo, uint8) {
 	if !File_exists(apk) {
 		return apkinfo, 13
 	}
+	// NOTE: main activity overrides currently not applied to `info from apk` feature.
 	apkinfo, rcode = get_info(apk)
 	if rcode != 0 {
 		return apkinfo, rcode
