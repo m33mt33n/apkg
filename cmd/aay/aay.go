@@ -2,7 +2,7 @@
 ┌───────────────────────────────────────────────────────────────────────────┐
   File           aay.go
   Description    An info viewer and launcher for installed android packages
-  Version        0.1.1 alpha
+  Version        0.1.2 alpha
   Author         Moin Khan <m33mt33n>
   License        GNU General Public License v3.0 or later (see LICENSE)
   Created        June 22, 2020, 02:27
@@ -33,7 +33,7 @@ import (
 
 var (
 	prog       string = "aay"
-	version    string = "0.1.1 alpha [28.03.2026]"
+	version    string = "0.1.2 alpha [07.06.2026]"
 	debug_mode bool   = false
 )
 
@@ -180,11 +180,11 @@ func app_action(cmd *cobra.Command, args []string) {
 				exit_on_error2(72, err)
 			}
 		} else if action == "datadir-path" {
-			println(inst_info.Data_dir)
+			fmt.Println(inst_info.Data_dir)
 		} else if action == "apkpath" {
-			println(inst_info.Apk_path)
+			fmt.Println(inst_info.Apk_path)
 		} else if action == "uid" {
-			println(inst_info.UID)
+			fmt.Println(inst_info.UID)
 		}
 		os.Exit(0)
 	}

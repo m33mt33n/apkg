@@ -159,7 +159,7 @@ func Create_db(new_db bool) uint8 {
 		fmt.Printf("> processing… [package %02d of %d]\r", idx+1, pkg_count)
 		Exec_add_record(stmt, pkg)
 	}
-	println()
+	fmt.Println()
 	err = tx.Commit()
 	if err != nil {
 		return 35
@@ -241,7 +241,7 @@ func Check_db() uint8 {
 			pkgs_changed = append(pkgs_changed, pkg)
 		}
 	}
-	println()
+	fmt.Println()
 	pkgs_changed_count = len(pkgs_changed)
 	print_count("> packages changed since last update: ", pkgs_changed_count)
 
